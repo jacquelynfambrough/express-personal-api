@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -39,6 +39,24 @@ app.get('/', function homepage(req, res) {
  * JSON API Endpoints
  */
 
+ // get all of profile
+ // app.get('/api/profile', function (req, res) {
+ //   // send all profile data at response
+ //
+ //   console.log('getting my profile info');
+ //   var myProf = req.params.profile;
+ //   res.json(profile);
+ // });
+
+ // get coffee shop information
+app.get('/api/profile', function (req, res) {
+  // send all books as JSON response
+  db.Profile.find(function(err, event){
+      if (err) { return console.log("index error: " + err); }
+      res.json(event);
+  });
+});
+
 app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
   res.json({
@@ -48,8 +66,9 @@ app.get('/api', function api_index(req, res) {
     base_url: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "GET", path: "/api/myprofile", description: "Data about me"},
+      {method: "GET", path: "/api/currentfavorites", description: "Lists my favorite songs"},
+      {method: "POST", path: "/api/suggestions", description: "Suggest songs for me!"}
     ]
   })
 });
@@ -57,6 +76,8 @@ app.get('/api', function api_index(req, res) {
 /**********
  * SERVER *
  **********/
+
+
 
 // listen on port 3000
 app.listen(process.env.PORT || 3000, function () {
