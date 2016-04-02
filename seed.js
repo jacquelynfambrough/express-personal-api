@@ -3,7 +3,7 @@
 
 var db = require('./models');
 
-var aboutMe = {
+var newProfile = {
   name: "Jackie Fambrough"
   github_link: "",
   github_profile_image:"",
@@ -19,11 +19,11 @@ var aboutMe = {
   }]
 };
 
-db.Campsite.create(new_campsite, function(err, campsite){
+db.Profile.create(newProfile, function(err, profile){
   if (err){
-    return console.log("Error:", err);
+    return console.log("Error: Oh no. ", err);
   }
 
-  console.log("Created new campsite", campsite._id)
+  console.log("My Profile", profile._id)
   process.exit(); // we're all done! Exit the program.
 })
