@@ -1,11 +1,11 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-var CurrentFavorites = new Schema({
+var CurrentFavoritesSchema = new Schema({
   title: String,
   artist: String,
   album: String,
-  
+
 
 });
 

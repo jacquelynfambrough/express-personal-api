@@ -39,21 +39,29 @@ app.get('/', function homepage(req, res) {
  * JSON API Endpoints
  */
 
- // get all of profile
- // app.get('/api/profile', function (req, res) {
- //   // send all profile data at response
- //
- //   console.log('getting my profile info');
- //   var myProf = req.params.profile;
- //   res.json(profile);
- // });
 
- // get coffee shop information
+ // /////////////////////remove before displaying///////////////////////////////
+ // // remove all records that match {} -- which means remove ALL records
+ // db.Book.remove({}, function(err, books){
+ //   if(err) {
+ //     console.log('Error occurred in remove', err);
+ //   } else {
+ //     console.log('removed all books');
+//////////////////////////////////////////
+//start first get - my profile
 app.get('/api/profile', function (req, res) {
-  // send all books as JSON response
+  // send profile
   db.Profile.find(function(err, event){
-      if (err) { return console.log("index error: " + err); }
-      res.json(event);
+    if (err) { return console.log("index error: " + err); }
+    res.json(event);
+  });
+}); // end get profile
+//start second get - current favorites
+app.get('/api/currentfavorites', function (req, res) {
+  // send all currentfavorites as JSON response
+  db.CurrentFavorites.find(function(err, event){
+    if (err) { return console.log("index error: " + err); }
+    res.json(event);
   });
 });
 
@@ -66,7 +74,7 @@ app.get('/api', function api_index(req, res) {
     base_url: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/myprofile", description: "Data about me"},
+      {method: "GET", path: "/api/profile", description: "Data about me"},
       {method: "GET", path: "/api/currentfavorites", description: "Lists my favorite songs"},
       {method: "POST", path: "/api/suggestions", description: "Suggest songs for me!"}
     ]

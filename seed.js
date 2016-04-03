@@ -18,25 +18,38 @@ var profile = {
     alive:false
   }]
 };
-// var songs = [{
-//   title: "Murakami",
-//   artist: "Made In Heights",
-//   album: "Without My Enemy What Would I do",
-//
-// },
-// {
-//   title: "Genesis",
-//   artist: "Grimes",
-//   album: "Visions",
-//
-// }
-// };
+var songs = [{
+  title: "Murakami",
+  artist: "Made In Heights",
+  album: "Without My Enemy What Would I do",
 
-db.Profile.create(profile, function(err, profile){
-  if (err){
-    return console.log("Error: Oh no. ", err);
-  }
+},
+{
+  title: "Genesis",
+  artist: "Grimes",
+  album: "Visions"
 
-  console.log("Profile", profile)
-  process.exit(); // we're all done! Exit the program.
-})
+}];
+
+//removes song before loading to prevent accumilating.
+  db.CurrentFavorites.remove({}, function(err, songs) {
+    console.log('removed all songs');
+  db.CurrentFavorites.create(songs, function(err, songs){
+    if (err){
+      return console.log("Error:", err);
+    }
+    console.log("Favorite Music", songs);
+
+ db.Profile.remove({}, function(err, profile) {
+   console.log('removed all profiles');
+ db.Profile.create(profile, function(err, profile){
+   if (err){
+     return console.log("Error:", err);
+   }
+   console.log("My profile", profile);
+   process.exit(); // we're all done! Exit the program.
+
+          });
+        });
+    });
+});
