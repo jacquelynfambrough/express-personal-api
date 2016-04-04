@@ -32,21 +32,22 @@ var profile = {
 // }];
 
 
-// remove all records that match {} -- which means remove ALL records
-// db.Profile.remove({}, function(err, profile){
-//   if(err) {
-//     console.log('Error occurred in remove', err);
-//   } else {
-//     console.log('removed all profile');
 
+db.Profile.remove({}, function(err, profile){
+  if(err) {
+    console.log('Error occurred in remove', err);
+  } else {
+    console.log('removed all profile');
+  }
+  process.exit();
+});
     // create new records based on the array books_list
     db.Profile.create(profile, function(err, profile){
       if (err) { return console.log('err', err); }
       console.log("created profile", profile);
       process.exit();
     });
-  // }
-// });
+
 // // remove all records that match {} -- which means remove ALL records
 // db.CurrentFavorites.remove({}, function(err, songs){
 //   if(err) {
