@@ -18,38 +18,47 @@ var profile = {
     alive:false
   }]
 };
-var songs = [{
-  title: "Murakami",
-  artist: "Made In Heights",
-  album: "Without My Enemy What Would I do",
+// var songs = [{
+//   title: "Murakami",
+//   artist: "Made In Heights",
+//   album: "Without My Enemy What Would I do"
+//
+// },
+// {
+//   title: "Genesis",
+//   artist: "Grimes",
+//   album: "Visions"
+//
+// }];
 
-},
-{
-  title: "Genesis",
-  artist: "Grimes",
-  album: "Visions"
 
-}];
+// remove all records that match {} -- which means remove ALL records
+// db.Profile.remove({}, function(err, profile){
+//   if(err) {
+//     console.log('Error occurred in remove', err);
+//   } else {
+//     console.log('removed all profile');
 
-//removes song before loading to prevent accumilating.
-  db.CurrentFavorites.remove({}, function(err, songs) {
-    console.log('removed all songs');
-  db.CurrentFavorites.create(songs, function(err, songs){
-    if (err){
-      return console.log("Error:", err);
-    }
-    console.log("Favorite Music", songs);
-
- db.Profile.remove({}, function(err, profile) {
-   console.log('removed all profiles');
- db.Profile.create(profile, function(err, profile){
-   if (err){
-     return console.log("Error:", err);
-   }
-   console.log("My profile", profile);
-   process.exit(); // we're all done! Exit the program.
-
-          });
-        });
+    // create new records based on the array books_list
+    db.Profile.create(profile, function(err, profile){
+      if (err) { return console.log('err', err); }
+      console.log("created profile", profile);
+      process.exit();
     });
-});
+  // }
+// });
+// // remove all records that match {} -- which means remove ALL records
+// db.CurrentFavorites.remove({}, function(err, songs){
+//   if(err) {
+//     console.log('Error occurred in remove', err);
+//   } else {
+//     console.log('removed all songs');
+//   }
+//
+//     // create new records based on the array songs
+//     db.CurrentFavorites.create(songs), function(err, songs){
+//       if (err) { return console.log('err', err); }
+//       console.log("created", songs.length, "songs");
+//       process.exit();
+//     };
+// });

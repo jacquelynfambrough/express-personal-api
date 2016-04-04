@@ -16,11 +16,20 @@ app.use(function(req, res, next) {
  * DATABASE *
  ************/
 
-var db = require('./models');
+var db = require("./models");
 
 /**********
  * ROUTES *
  **********/
+
+ //start first get - my profile
+ app.get('/api/profile', function (req, res) {
+   // send all profile as JSON response
+   db.Profile.find(function(err, event){
+        if (err) { return console.log("index error: " + err); }
+        res.json(event);
+    });
+  });
 
 // Serve static files from the `/public` directory:
 // i.e. `/images`, `/scripts`, `/styles`
@@ -40,30 +49,6 @@ app.get('/', function homepage(req, res) {
  */
 
 
- // /////////////////////remove before displaying///////////////////////////////
- // // remove all records that match {} -- which means remove ALL records
- // db.Book.remove({}, function(err, books){
- //   if(err) {
- //     console.log('Error occurred in remove', err);
- //   } else {
- //     console.log('removed all books');
-//////////////////////////////////////////
-//start first get - my profile
-app.get('/api/profile', function (req, res) {
-  // send profile
-  db.Profile.find(function(err, event){
-    if (err) { return console.log("index error: " + err); }
-    res.json(event);
-  });
-}); // end get profile
-//start second get - current favorites
-app.get('/api/currentfavorites', function (req, res) {
-  // send all currentfavorites as JSON response
-  db.CurrentFavorites.find(function(err, event){
-    if (err) { return console.log("index error: " + err); }
-    res.json(event);
-  });
-});
 
 app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
