@@ -29,6 +29,31 @@ var songs = [{
   artist: "Grimes",
   album: "Visions"
 
+},
+{
+  title:"Romeo",
+  artist:"Chairlift",
+  album:"Moth"
+},
+{
+  title:"Shriek",
+  artist:"Wye Oak",
+  album:"Shriek"
+},
+{
+  title:"Get Away",
+  artist:"The Internet",
+  album:"Ego Death"
+},
+{
+  title:"Against The Wall",
+  artist:"Jessy Lanza",
+  album:"Pull My Hair Back"
+},
+{
+  title:"Goodbye Weekend",
+  artist:"Mac Demarco",
+  album:"Salad Days"
 }];
 
 
