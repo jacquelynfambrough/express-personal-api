@@ -18,18 +18,18 @@ var profile = {
     alive:false
   }]
 };
-// var songs = [{
-//   title: "Murakami",
-//   artist: "Made In Heights",
-//   album: "Without My Enemy What Would I do"
-//
-// },
-// {
-//   title: "Genesis",
-//   artist: "Grimes",
-//   album: "Visions"
-//
-// }];
+var songs = [{
+  title: "Murakami",
+  artist: "Made In Heights",
+  album: "Without My Enemy What Would I do"
+
+},
+{
+  title: "Genesis",
+  artist: "Grimes",
+  album: "Visions"
+
+}];
 
 
 
@@ -39,27 +39,29 @@ db.Profile.remove({}, function(err, profile){
   } else {
     console.log('removed all profile');
   }
-  process.exit();
-});
+
+
     // create new records based on the array books_list
     db.Profile.create(profile, function(err, profile){
       if (err) { return console.log('err', err); }
       console.log("created profile", profile);
+
+    });
+});
+// remove all records that match {} -- which means remove ALL records
+db.CurrentFavorites.remove({}, function(err, music){
+console.log(songs);
+  if(err) {
+    console.log('Error occurred in remove', err);
+  } else {
+    console.log('removed all songs');
+  }
+
+    // create new records based on the array songs
+    db.CurrentFavorites.create(songs, function(err, music){
+      console.log(err, music);
+      if (err) { return console.log('err', err); }
+      console.log("created songs");
       process.exit();
     });
-
-// // remove all records that match {} -- which means remove ALL records
-// db.CurrentFavorites.remove({}, function(err, songs){
-//   if(err) {
-//     console.log('Error occurred in remove', err);
-//   } else {
-//     console.log('removed all songs');
-//   }
-//
-//     // create new records based on the array songs
-//     db.CurrentFavorites.create(songs), function(err, songs){
-//       if (err) { return console.log('err', err); }
-//       console.log("created", songs.length, "songs");
-//       process.exit();
-//     };
-// });
+});

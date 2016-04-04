@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var CurrentFavoritesSchema = new Schema({
   title: String,
   artist: String,
-  album: String,
+  album: String
 
 
 });
